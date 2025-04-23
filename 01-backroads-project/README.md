@@ -55,6 +55,48 @@ src/
 - Modern UI/UX practices
 - Component reusability
 
+## Technologies Used
+- React.js 18
+- CSS3 with CSS Variables
+- JavaScript (ES6+)
+- React Icons
+- Responsive Design
+- Git & GitHub
+
+## What I Learned
+- Component architecture in React
+- Props and state management
+- Responsive design principles
+- Git workflow and deployment
+- Code organization and best practices
+- Component reusability patterns
+
+## Challenges & Solutions
+### Challenges
+- Implementing responsive navigation
+- Managing component state
+- Optimizing images for performance
+- Organizing CSS effectively
+
+### Solutions
+- Used CSS media queries and flexbox
+- Implemented React hooks for state
+- Compressed and lazy-loaded images
+- Created modular CSS structure
+
+## Future Improvements
+- Add dark/light theme toggle
+- Implement authentication
+- Add booking functionality
+- Create admin dashboard
+- Integrate with backend API
+
+## Resources Used
+- [React Documentation](https://reactjs.org/)
+- [CSS-Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Netlify Deployment Guide](https://docs.netlify.com/)
+
 ## Development Setup
 
 ### Prerequisites

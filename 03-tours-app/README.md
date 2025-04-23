@@ -1,12 +1,40 @@
-# React + Vite
+# Tours App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that displays tour packages fetched from an API. Users can browse through available tours, read details about each tour, and remove tours they're not interested in.
 
-Currently, two official plugins are available:
+## What I Learned
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Working with React's useState and useEffect hooks
+- Fetching data from an external API
+- Implementing loading states
+- Conditional rendering in React
+- Handling user interactions and state updates
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```
+03-tours-app/
+├── src/
+│   ├── components/
+│   │   ├── Loading.jsx
+│   │   ├── Tour.jsx
+│   │   └── Tours.jsx
+│   ├── App.jsx
+│   └── main.jsx
+├── public/
+└── index.html
+```
+
+## How to Run
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open your browser and navigate to `http://localhost:5173`

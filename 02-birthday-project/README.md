@@ -45,12 +45,34 @@ npm start
 birthday-reminder/
 ├── src/
 │   ├── components/
+│   │   ├── List.js
+│   │   └── Person.js
 │   ├── data/
+│   │   └── data.js
 │   ├── styles/
+│   │   └── index.css
 │   ├── App.js
 │   └── index.js
 ├── public/
 └── package.json
+```
+
+## Usage
+1. The app displays a list of birthdays for the current day
+2. Each person's card shows their image, name, and age
+3. Click "Clear All" to remove all birthdays from the list
+4. Data automatically reloads when you refresh the page
+
+## Development
+```bash
+# Run tests
+npm test
+
+# Build for production
+npm run build
+
+# Run linting
+npm run lint
 ```
 
 ## Contributing
