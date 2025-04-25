@@ -25,21 +25,29 @@ const Review = () => {
   };
 
   return (
-    <article>
-      <img src={person.image} alt={person.name} />
-      <h4>{person.name}</h4>
-      <h4>{person.job}</h4>
-      <button type="type" onClick={nextPerson}>
-        next person
+    <article className="review">
+      <div className="img-container">
+      <img src={person.image} alt={person.name} className="person-img" />
+      <span className="quote-icon">
+        <FaQuoteRight/>
+      </span>
+      </div>
+      
+      <h4 className="author">{person.name}</h4>
+      <p className="job">{person.job}</p>
+      <p className="info">{person.text}</p>
+      <div className="button-container">
+      <button className="prev-btn" onClick={prevPerson}>
+          <FaChevronLeft />
+        </button>
+        <button className="next-btn" onClick={nextPerson}>
+          <FaChevronRight />
+        </button>
+      </div>
+      <button className="random-btn" onClick={randomPerson}>
+        surprise me
       </button>
-      <br />
-      <button type="type" onClick={prevPerson}>
-        previous person
-      </button>
-      <br />
-      <button type="type" onClick={randomPerson}>
-        random person
-      </button>
+      
     </article>
   );
 };
