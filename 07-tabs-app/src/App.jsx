@@ -6,7 +6,7 @@ const url =
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
@@ -37,34 +37,40 @@ function App() {
   if (isError) return <h2>Error fetching Data</h2>;
 
   const handleUserChange = (id) => {
-    const singleUser = users[id];
-    setUser(singleUser);
+    const singleUser = users.find((user)=>user.id == id);
+     setUser(singleUser);
+    
+    
   };
 
   return (
     <>
-      <h2>Tab application</h2>
-
-      <section>
+      <section >
+<article>
         {users.map((user) => (
           <div key={user.id}>
             <button className="btn" onClick={()=>handleUserChange(user.id)}>{user.company}</button>
           </div>
         ))}
+      </article>
+
+      <article>
+        
+          { <div>
+            <h2>{user.title}</h2>
+            <h4>{user.company}</h4>
+            <h4>{user.dates}</h4>
+            <ul>
+              {user.duties?.map((duty,index)=>(
+               <li key={index}>{duty}</li>
+              ))}
+            </ul>
+          </div>}
+    
+      </article>
       </section>
 
-      <section>
-        {user.map((item) => {
-          <div key={item.id}>
-            <h2>{item.title}</h2>
-            <h4>{item.company}</h4>
-            <h4>{item.dates}</h4>
-            <ul>
-              <li>{item.duties}</li>
-            </ul>
-          </div>;
-        })}
-      </section>
+      
     </>
   );
 }
