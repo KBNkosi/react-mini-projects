@@ -37,40 +37,38 @@ function App() {
   if (isError) return <h2>Error fetching Data</h2>;
 
   const handleUserChange = (id) => {
-    const singleUser = users.find((user)=>user.id == id);
-     setUser(singleUser);
-    
-    
+    const singleUser = users.find((user) => user.id == id);
+    setUser(singleUser);
   };
 
   return (
     <>
-      <section >
-<article>
-        {users.map((user) => (
-          <div key={user.id}>
-            <button className="btn" onClick={()=>handleUserChange(user.id)}>{user.company}</button>
-          </div>
-        ))}
-      </article>
+      <section>
+        <article>
+          {users.map((user) => (
+            <div key={user.id}>
+              <button className="btn" onClick={() => handleUserChange(user.id)}>
+                {user.company}
+              </button>
+            </div>
+          ))}
+        </article>
 
-      <article>
-        
-          { <div>
-            <h2>{user.title}</h2>
-            <h4>{user.company}</h4>
-            <h4>{user.dates}</h4>
-            <ul>
-              {user.duties?.map((duty,index)=>(
-               <li key={index}>{duty}</li>
-              ))}
-            </ul>
-          </div>}
-    
-      </article>
+        <article>
+          {
+            <div>
+              <h2>{user.title}</h2>
+              <h4>{user.company}</h4>
+              <h4>{user.dates}</h4>
+              <ul>
+                {user.duties?.map((duty, index) => (
+                  <li key={index}>{duty}</li>
+                ))}
+              </ul>
+            </div>
+          }
+        </article>
       </section>
-
-      
     </>
   );
 }
