@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [item, setItem] = useState("");
@@ -15,8 +15,18 @@ function App() {
   };
 
   const handleBrought = (e) => {
-     setIsBrought(e.target.checked);
-   
+    let elementName=e.target.name;
+
+    console.log(elementName)
+    console.log(elementName.value)
+
+    // setIsBrought(e.target.name, e.target.checked);
+  };
+
+  const handleDelete = (removeItem) => {
+    const newGroceryList = groceryList.filter((item) => item !== removeItem);
+
+    setGroceryList(newGroceryList);
   };
 
   return (
@@ -34,22 +44,27 @@ function App() {
         <button type="submit">Add</button>
       </form>
 
-      <form >
+      <div>
         {groceryList.map((item, index) => (
           <div key={index}>
             <input
               type="checkbox"
               checked={isBrought}
-              id="brought"
-              name="brought"
+              id={item}
+              name={item}
               onChange={handleBrought}
             />
-            <label htmlFor="brought">
-              {item && <h4 style={{textDecoration:"line-through"}}>{item}</h4>}
+            <label htmlFor={item}>
+              {isBrought ? (
+                <h4 style={{ textDecoration: "line-through" }}>{item}</h4>
+              ) : (
+                item
+              )}
             </label>
+            <button onClick={() => handleDelete(item)}>delete</button>
           </div>
         ))}
-      </form>
+      </div>
     </>
   );
 }
