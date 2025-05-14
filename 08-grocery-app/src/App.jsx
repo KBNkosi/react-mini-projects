@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-const arr = ["firstItem", "secondItem"];
-
 function App() {
   const [item, setItem] = useState("");
+  const [isBrought, setIsBrought] = useState(false);
   const [groceryList, setGroceryList] = useState([]);
 
   const handleSubmit = (e) => {
@@ -13,6 +12,11 @@ function App() {
     setGroceryList(() => [...groceryList, groceryItem]);
 
     setItem("");
+  };
+
+  const handleBrought = (e) => {
+     setIsBrought(e.target.checked);
+   
   };
 
   return (
@@ -28,6 +32,23 @@ function App() {
         />
 
         <button type="submit">Add</button>
+      </form>
+
+      <form >
+        {groceryList.map((item, index) => (
+          <div key={index}>
+            <input
+              type="checkbox"
+              checked={isBrought}
+              id="brought"
+              name="brought"
+              onChange={handleBrought}
+            />
+            <label htmlFor="brought">
+              {item && <h4 style={{textDecoration:"line-through"}}>{item}</h4>}
+            </label>
+          </div>
+        ))}
       </form>
     </>
   );
