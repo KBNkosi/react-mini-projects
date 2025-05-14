@@ -2,29 +2,34 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [item, setItem] = useState("");
-  const [isBrought, setIsBrought] = useState(false);
   const [groceryList, setGroceryList] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const groceryItem = item;
+    const groceryItem = {
+      id:Date.now(),
+      name: item,
+      isBrought: false,
 
-    setGroceryList(() => [...groceryList, groceryItem]);
+    };
+
+    setGroceryList( [...groceryList, groceryItem]);
 
     setItem("");
   };
 
-  const handleBrought = (e) => {
-    let elementName=e.target.name;
+  const handleBrought = (id) => {
 
-    console.log(elementName)
-    console.log(elementName.value)
-
-    // setIsBrought(e.target.name, e.target.checked);
+    setGroceryList(groceryList.map((item)=>{
+      if(item.id === id){
+        return {...item, isBrought: !item.isBrought};
+      }
+      return item;
+    }));
   };
 
-  const handleDelete = (removeItem) => {
-    const newGroceryList = groceryList.filter((item) => item !== removeItem);
+  const handleDelete = (id) => {
+    const newGroceryList = groceryList.filter((item) => item.id !== id);
 
     setGroceryList(newGroceryList);
   };
@@ -45,23 +50,22 @@ function App() {
       </form>
 
       <div>
-        {groceryList.map((item, index) => (
-          <div key={index}>
+        {groceryList.map((groceryItem) => (
+          <div key={groceryItem.id}>
             <input
               type="checkbox"
-              checked={isBrought}
-              id={item}
-              name={item}
-              onChange={handleBrought}
+              checked={groceryItem.isBrought}
+              id={groceryItem.id}
+              onChange={()=>handleBrought(groceryItem.id)}
             />
-            <label htmlFor={item}>
-              {isBrought ? (
-                <h4 style={{ textDecoration: "line-through" }}>{item}</h4>
+            <label htmlFor={groceryItem.id}>
+              {groceryItem.isBrought ? (
+                <h4 style={{ textDecoration: "line-through" }}>{groceryItem.name}</h4>
               ) : (
-                item
+                groceryItem.name
               )}
             </label>
-            <button onClick={() => handleDelete(item)}>delete</button>
+            <button onClick={() => handleDelete(groceryItem.id)}>delete</button>
           </div>
         ))}
       </div>
