@@ -1,8 +1,26 @@
 import { useEffect, useState } from "react";
 
+// const getLocalStorage=()=>{
+//   let list=localStorage.getItem("groceryList");
+//    if(list){
+//     list=JSON.parse(localStorage.getItem("groceryList"));
+//    }else{
+//     list=[];
+//    }
+
+//    return list;
+// }
+
+const defaultList=JSON.parse(localStorage.getItem("groceryList") || "[]");
+
+
+const setLocalStorage=(items)=>{
+  localStorage.setItem("groceryList",JSON.stringify(items))
+};
+
 function App() {
   const [item, setItem] = useState("");
-  const [groceryList, setGroceryList] = useState([]);
+  const [groceryList, setGroceryList] = useState(defaultList);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +31,10 @@ function App() {
 
     };
 
-    setGroceryList( [...groceryList, groceryItem]);
+    const newList= [...groceryList, groceryItem];
+
+    setGroceryList( newList);
+    setLocalStorage(newList)
 
     setItem("");
   };
@@ -32,6 +53,7 @@ function App() {
     const newGroceryList = groceryList.filter((item) => item.id !== id);
 
     setGroceryList(newGroceryList);
+    setLocalStorage(newGroceryList);
   };
 
   return (
