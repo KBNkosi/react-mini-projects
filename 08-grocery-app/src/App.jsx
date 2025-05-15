@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Form from "./components/Form";
+import List from "./components/List";
 
 // const getLocalStorage=()=>{
 //   let list=localStorage.getItem("groceryList");
@@ -11,42 +13,24 @@ import { useEffect, useState } from "react";
 //    return list;
 // }
 
-const defaultList=JSON.parse(localStorage.getItem("groceryList") || "[]");
+const defaultList = JSON.parse(localStorage.getItem("groceryList") || "[]");
 
-
-const setLocalStorage=(items)=>{
-  localStorage.setItem("groceryList",JSON.stringify(items))
+const setLocalStorage = (items) => {
+  localStorage.setItem("groceryList", JSON.stringify(items));
 };
 
 function App() {
-  const [item, setItem] = useState("");
   const [groceryList, setGroceryList] = useState(defaultList);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const groceryItem = {
-      id:Date.now(),
-      name: item,
-      isBrought: false,
-
-    };
-
-    const newList= [...groceryList, groceryItem];
-
-    setGroceryList( newList);
-    setLocalStorage(newList)
-
-    setItem("");
-  };
-
   const handleBrought = (id) => {
-
-    setGroceryList(groceryList.map((item)=>{
-      if(item.id === id){
-        return {...item, isBrought: !item.isBrought};
-      }
-      return item;
-    }));
+    setGroceryList(
+      groceryList.map((item) => {
+        if (item.id === id) {
+          return { ...item, isBrought: !item.isBrought };
+        }
+        return item;
+      })
+    );
   };
 
   const handleDelete = (id) => {
@@ -58,7 +42,24 @@ function App() {
 
   return (
     <>
-      <form action="" onSubmit={handleSubmit}>
+      <Form
+        groceryList={groceryList}
+        setGroceryList={setGroceryList}
+        setLocalStorage={setLocalStorage}
+      />
+      <List
+        handleDelete={handleDelete}
+        handleBrought={handleBrought}
+        groceryList={groceryList}
+      />
+    </>
+  );
+}
+
+export default App;
+
+/**
+ * <form action="" onSubmit={handleSubmit}>
         <label htmlFor="name"></label>
         <input
           type="text"
@@ -91,8 +92,5 @@ function App() {
           </div>
         ))}
       </div>
-    </>
-  );
-}
-
-export default App;
+ * 
+ */
