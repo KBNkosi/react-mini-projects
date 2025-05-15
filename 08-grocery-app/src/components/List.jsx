@@ -1,6 +1,6 @@
 import React from "react";
 
-const List = ({handleBrought, handleDelete, groceryList}) => {
+const List = ({ handleIsChecked, handleDelete, groceryList}) => {
   return (
     <>
       <div>
@@ -10,7 +10,7 @@ const List = ({handleBrought, handleDelete, groceryList}) => {
               type="checkbox"
               checked={groceryItem.isBrought}
               id={groceryItem.id}
-              onChange={() => handleBrought(groceryItem.id)}
+              onChange={() =>  handleIsChecked(groceryItem.id)}
             />
             <label htmlFor={groceryItem.id}>
               {groceryItem.isBrought ? (

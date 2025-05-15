@@ -1,9 +1,9 @@
-import React from "react";
 import { useState } from "react";
 
 const Form = ({ groceryList,setGroceryList,setLocalStorage }) => {
 
   const [item, setItem] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const groceryItem = {
